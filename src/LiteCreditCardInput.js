@@ -133,7 +133,7 @@ export default class LiteCreditCardInput extends Component {
   _iconToShow = () => {
     const { focused, values: { type } } = this.props;
     if (focused === "cvc" && type === "american-express") return "cvc_amex";
-   
+
     if (type) return type;
     return "placeholder";
   }
@@ -143,30 +143,38 @@ export default class LiteCreditCardInput extends Component {
     const showRightPart = true
 
     return (
-      <View >
-        <View style={{backgroundColor:"#FFF",flexDirection:"row",justifyContent:"space-between",alignItems:"center",marginBottom:15 }}>
-          
+      <View style={{ flex: 1 }}>
+        <View style={{ backgroundColor: "#FFF", flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 15 }}>
+
           <CCInput {...this._inputProps("number")}
             keyboardType="numeric"
 
-            containerStyle={{width:"100%"}} />
-         
-            <Image style={[s.icon,{height:30,marginEnd:15}]} source={Icons[this._iconToShow()]} />
-          
+            containerStyle={{ width: "100%" }} />
+
+          <Image style={[s.icon, { height: 30, marginEnd: 15 }]} source={Icons[this._iconToShow()]} />
+
         </View>
 
 
 
 
 
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%", }}>
+          <View style={{ flex: 1,marginEnd:10 }}>
+            <CCInput {...this._inputProps("expiry")}
+              keyboardType="numeric"
+              containerStyle={{ width: "100%" }} />
 
-        <CCInput {...this._inputProps("expiry")}
-          keyboardType="numeric"
-          containerStyle={{width:"100%",marginBottom:15,}}  />
+          </View>
 
-        <CCInput {...this._inputProps("cvc")}
-          keyboardType="numeric"
-          containerStyle={{width:"100%",marginBottom:15,}}  />
+          <View style={{ flex: 1,marginStart:10 }}>
+            <CCInput {...this._inputProps("cvc")}
+              keyboardType="numeric"
+              containerStyle={{ width: "100%" }} />
+          </View>
+
+        </View>
+
 
       </View>
     );
